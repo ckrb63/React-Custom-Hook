@@ -15,13 +15,13 @@ function App() {
       setTasks(loadedTasks);
   };
 
-  const {isLoading, error, sendRequest} = useFetch({
-    url : 'https://react-http-89f64-default-rtdb.firebaseio.com/tasks.json'
-  },applyData);
+  const {isLoading, error, sendRequest} = useFetch();
 
   useEffect(() => {
-    sendRequest();
-  }, []);
+    sendRequest({
+      url : 'https://react-http-89f64-default-rtdb.firebaseio.com/tasks.json'
+    },applyData);
+  }, [sendRequest]);
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
